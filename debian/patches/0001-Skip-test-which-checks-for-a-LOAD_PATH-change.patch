@@ -1,0 +1,27 @@
+From: Lucas Kanashiro <kanashiro@ubuntu.com>
+Date: Wed, 1 Jul 2020 16:59:56 -0300
+Subject: Skip test which checks for a $LOAD_PATH change
+
+This test checks if the $LOAD_PATH was changed to include the lib
+directory of the source tree. This is not the desired behavior in the
+autopkgtest environment.
+
+Forwarded: not-needed
+Last-Updated: 2020-07-01
+---
+ spec/spec_helper_spec.rb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/spec/spec_helper_spec.rb b/spec/spec_helper_spec.rb
+index 8cdd980..8f800ae 100644
+--- a/spec/spec_helper_spec.rb
++++ b/spec/spec_helper_spec.rb
+@@ -10,7 +10,7 @@ RSpec.describe "spec_helper.rb" do
+   end
+ 
+   describe "lib_dir" do
+-    it "is already in $LOAD_PATH" do
++    xit "is already in $LOAD_PATH" do
+       expect($LOAD_PATH).to include lib_dir
+     end
+   end
