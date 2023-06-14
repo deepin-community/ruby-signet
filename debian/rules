@@ -1,4 +1,10 @@
 #!/usr/bin/make -f
 
+export GEM2DEB_TEST_RUNNER = --check-dependencies
+
 %:
-	dh $@
+	dh $@ --buildsystem=ruby --with ruby
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -f debian/ruby-signet/usr/lib/ruby/vendor_ruby/compat/securerandom.rb
